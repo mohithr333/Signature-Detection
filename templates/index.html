@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Recognition</title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+<!--    <link rel="stylesheet" href="C:\Users\mohit\PycharmProjects\Signature_verification_system\static\css\style.css">-->
+
+</head>
+<body>
+    <div class="container">
+        <h1>ENHANCED HANDWRITTEN SIGNATURE 
+            RECOGNITION WITH CNN-SVM FUSION</h1>
+            <h3>ABSTRACT</h3>
+                <p>Handwritten signature recognition plays a crucial role in domains like security, document 
+                    authentication, and identity verification. This project presents an innovative approach that 
+                    integrates Convolutional Neural Networks (CNN) and Support Vector Machines (SVM) to achieve 
+                    precise and efficient signature recognition. The project's primary objective is to develop a system 
+                    capable of training on user signatures and subsequently identifying individuals based on their 
+                    unique handwritten patterns. <br><br>
+                    In the training phase, our system utilizes a dataset of user signatures to learn and extract distinctive 
+                    features from each individual's writing style. The CNN is employed to automatically extract 
+                    pertinent features from signature images, resulting in robust representations for subsequent 
+                    classification. Each signature is linked to its respective user, forming a comprehensive reference 
+                    database. <br><br>
+                    During the testing phase, we employ a user-friendly web interface to capture input images of user 
+                    signatures. Our system then leverages the trained CNN and SVM models to classify these signature 
+                    samples. By comparing the input signature against the stored database, the system determines its 
+                    authenticity. The classification result is promptly presented to the user, providing a convenient and 
+                    reliable means of verifying handwritten signatures. <br><br>
+                    Our proposed system demonstrates the potential to significantly enhance signature recognition 
+                    accuracy and security across various applications, including document verification and access 
+                    control. The combination of CNN and SVM algorithms establishes a robust framework for both 
+                    training and testing phases, ensuring the system's effectiveness in real-world scenarios.</p>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if filename %}
+    <div class="osd_images">
+        <p>Uploaded File: {{ filename }}</p>
+        <img src="{{ url_for('display_image', filename=filename) }}">
+    </div>
+    <form action="/detect_signature" method="post">
+        <input type="hidden" name="filename" value="{{ filename }}">
+        <button type="submit">Check for Signatures</button>
+    </form>
+    {% endif %}
+
+    {% if signature_path %}
+    <div class="osd_images">
+        <p>Detected Signature:</p>
+        <img src="{{ url_for('display_signature', filename='output.png') }}" alt="Detected Signature">
+    </div>
+    <form action="/crop_signatures" method="post">
+        <input type="hidden" name="filename" value="{{ filename }}">
+        <button type="submit">Crop signature</button>
+    </form>
+    {% endif %}
+
+    {% for path in cropped_signature_paths %}
+    <div class="cropped_images">
+        <p>Cropped Signature:</p>
+        <img src="{{ path }}" alt="Cropped Signature">
+    </div>
+    {% endfor %}
+
+    {% if cropped_signature_paths %}
+        <div>
+        <button id="verifyButton" type="submit">Verify User</button>
+        <div id="verificationMessage"></div>
+        </div>
+    {% endif %}
+
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+
+    </div>
+<script>
+    // Ensure the DOM is fully loaded before accessing elements
+    document.addEventListener("DOMContentLoaded", function() {
+        // Add event listener to the button
+        document.getElementById("verifyButton").addEventListener("click", function() {
+            // Update the content of the verificationMessage div
+            document.getElementById("verificationMessage").innerText = "User verified";
+        });
+    });
+</script>
+</body>
+</html>

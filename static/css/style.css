@@ -1,0 +1,120 @@
+/* Static CSS for Signature Recognition Web Interface */
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(189, 126, 126);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: beige;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+/* Form styles */
+form {
+    margin-top: 100px;
+    padding-left: 30%;
+    padding-right: 20%;
+}
+
+input[type="file"] {
+    margin-right: 10px;
+    color: brown
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+h1 {
+    color: black;
+    text-align: center;
+}
+h3 {
+    color: black;
+    text-align: center;
+    padding-top: 20px;
+    text-decoration: underline 3px;
+}
+p {
+    text-align: justify;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.predicted_user {
+    text-align: center;
+    color: red;
+    text-decoration: underline 2px;
+    font-size: large;
+    font-weight: bold;
+}
+.osd_images {
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 500px;
+    height: 700px;
+}
+.osd_images img {
+    max-width: 100%;
+    max-height: 90%;
+    display: block;
+    margin: auto;
+}
+.cropped_images {
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 300px;
+    height: 300px;
+}
+.cropped_images img {
+    max-width: 100%;
+    max-height: 90%;
+    display: block;
+    margin: auto;
+}
+#verificationMessage {
+    font-size: 20px;
+    font-weight: bold;
+    color: green;
+    background-color: #f0f0f0;
+    border: 2px solid green;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
